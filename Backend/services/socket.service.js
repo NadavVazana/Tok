@@ -17,6 +17,16 @@ async function setupSocketAPI(http) {
             socket.join(serverId)
         })
 
+        socket.on('typing',(typeInfo)=>{
+            socket.broadcast.to(typeInfo.server._id).emit('apply-typing',typeInfo.user)
+        })
+
+        socket.on('stop-typing',(server)=>{
+            socket.broadcast.to(server._id).emit('apply-stop-typing','')
+        })
+
+        
+
         
 
 

@@ -9,6 +9,13 @@
     overflow-x: hidden;
     right: 0;
 
+    .typing{
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%,-90%);
+    }
+
     .messages{
         color: whitesmoke;
 

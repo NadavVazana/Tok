@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { UserService } from './../../services/user.service';
 import { MessageService } from './../../services/message.service';
 import { SocketService } from './../../services/socket.service';
@@ -22,12 +23,18 @@ export class ChatComponent implements OnInit {
   server!: any
   message!: string
   messages: any[] = []
+  isTyping = {username:'',isTyping:false}
+  user!:User
 
   ngAfterViewInit(){
     
 
   }
   async ngOnInit() {
+    const user = this.getLoggedInUser()
+    if(user) this.user = user
+
+
     
     // this.scroll.nativeElement.scrollTop = 0
     
@@ -43,6 +50,9 @@ export class ChatComponent implements OnInit {
         })}})})
 
 
+        
+
+
 
 
     this.socketService.listen('server-message').subscribe((message: any) => {
@@ -53,6 +63,19 @@ export class ChatComponent implements OnInit {
         this.messages.push({ msg, sentAt: message.sentAt,user:message.user })
       }})
 
+      this.socketService.listen('apply-typing').subscribe((user:any)=>{
+        console.log(user);
+        
+          this.isTyping.isTyping = true
+          this.isTyping.username = user
+        
+      })
+
+      this.socketService.listen('apply-stop-typing').subscribe(()=>{
+        this.isTyping.isTyping = false
+        this.isTyping.username = ''
+      })
+
 
 
     this.messageService.query().subscribe((msgs: any) => {
@@ -61,6 +84,12 @@ export class ChatComponent implements OnInit {
 
 getLoggedInUser(){
   return this.userService.getLoggedInUser().username
+  
+}
+
+onTyping(){
+  if(!this.message) this.socketService.emit('stop-typing',this.server)
+  else this.socketService.emit('typing',{server:this.server,user:this.user})
   
 }
 

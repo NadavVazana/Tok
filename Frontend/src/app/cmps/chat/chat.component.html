@@ -15,8 +15,9 @@
             </li>
         </ul>
     </div>
+    <h1 class="typing" *ngIf="isTyping.isTyping">{{isTyping.username}} is typing...</h1>
     <form (ngSubmit)="sendMessage()" >
-        <input autocomplete="off" required [(ngModel)]="message" name="message" [disabled]="!server"  spellcheck="false" type="text">
+        <input (input)="onTyping()" autocomplete="off" required [(ngModel)]="message" name="message" [disabled]="!server"  spellcheck="false" type="text">
         <button class="snd-btn">Send</button>
     </form>
 </section>
