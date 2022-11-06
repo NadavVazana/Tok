@@ -7,9 +7,7 @@ module.exports = {
 
 
 async function query(server) {
-    console.log(server);
     const collection = await dbService.getCollection('message')
-    // console.log(await collection.find({"server":{"_id":server._id}}).toArray());
     return await collection.find({}).toArray()
 }
 async function setMsgs(message) {

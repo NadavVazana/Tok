@@ -10,7 +10,7 @@
     right: 0;
 
     .typing{
-        position: absolute;
+        position: fixed;
         top: 90%;
         left: 50%;
         transform: translate(-50%,-90%);
@@ -67,8 +67,10 @@
         width: 100%;
         z-index: 3;
         left: 30%;
+        gap: 10px;
 
        input{
+        border-radius: 20px;
         color: whitesmoke;
         font-weight: 700;
         font-family: Madefor;
@@ -84,6 +86,7 @@
        }
 
        button{
+        border-radius: 20px;
         transition: all 0.3s;
         font-family: Madefor;
         font-size: 1.1rem;

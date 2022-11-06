@@ -98,8 +98,7 @@ onTyping(){
 
   sendMessage() {
     if (!this.message) return
-    console.log(this.scroll.nativeElement.scrollHeight );
-    
+    this.socketService.emit('stop-typing',this.server)
     const date = new Date()
     const mins = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
     const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()
