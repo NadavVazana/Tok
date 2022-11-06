@@ -1,0 +1,10 @@
+<section class="server-list">
+    <div *ngIf="!servers" class="loader">
+        <p>Loading servers...</p>
+    </div>
+    <ul class="flex-column">
+        <li (click)="onSelectServer(server)" [routerLink]="['/',server._id]" [routerLinkActive]="'active'" title={{server.name}} *ngFor="let server of servers">
+            <img src={{server.imgPath}} alt="server-logo">
+        </li>
+    </ul>
+</section>

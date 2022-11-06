@@ -1,0 +1,27 @@
+<section class="header">
+    <div [routerLink]="['']" class="left-header flex">
+        <img src="../../../assets/imgs/icon.svg" alt="logo">
+        <h1>Tok</h1>
+    </div>
+
+    <div class="right-header">
+        <button *ngIf="!loggedInUser" (click)="isModal = !isModal">Login</button>
+        <div *ngIf="loggedInUser" class="user-info">
+            <h1>Welcome {{loggedInUser.username}}</h1>
+            <img src="../../../assets/imgs/user.svg" alt="user">
+            <button (click)="onSignOut()">Signout</button>
+        </div>
+    </div>
+
+    <div class="login-modal" *ngIf="isModal">
+        <form>
+            <input [(ngModel)]="user.username" name="username" type="text" placeholder="username">
+            <input name="password" [(ngModel)]="user.password" type="text" placeholder="password">
+            <button (click)="onLogin()" type="button" >Login</button>
+
+            <button (click)="onSignup()" type="button">Signup</button>
+        </form>
+    </div>
+
+    <div *ngIf="isModal" (click)="isModal = false" class="black-screen"></div>
+</section>

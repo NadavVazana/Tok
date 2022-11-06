@@ -1,0 +1,20 @@
+<section #scroll class="chat">
+    <div *ngIf="!server"  class="index-view">
+        <h1>Welcome to Tok.</h1>
+        <p>let's start with selecting a server.</p>
+    </div>
+    <!-- <div *ngIf="server" class="member">{{server | json}}</div> -->
+    <div *ngIf="server" class="messages">
+        <h1>Welcome to the {{server.name}} channel!</h1>
+        <ul>
+            <li *ngFor="let msg of messages">
+                <img src="../../../assets/imgs/user.svg" alt="">
+                <p> {{msg.msg}}</p> <p class="sent-at">{{msg.sentAt}}</p>
+            </li>
+        </ul>
+    </div>
+    <form (ngSubmit)="sendMessage()" >
+        <input autocomplete="off" required [(ngModel)]="message" name="message" [disabled]="!server"  spellcheck="false" type="text">
+        <button class="snd-btn">Send</button>
+    </form>
+</section>

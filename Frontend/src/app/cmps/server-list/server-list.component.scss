@@ -1,0 +1,43 @@
+    .server-list{
+    .loader{
+        color: whitesmoke;
+    }
+    
+    ul{
+        z-index: 1;
+        background-color: #2a2a32;
+
+        margin-top: 0;
+        height: 100vh;
+        padding: 20px;
+        border-inline-end: rgba(128, 128, 128, 0.24) solid 1px;
+        position: fixed;
+        img{
+            width: 30px;
+        }
+        .active{
+
+            background-color:rgb(49, 49, 58); 
+            outline: rgb(125, 123, 123) 1px solid;
+        }
+
+
+        left:0;
+        padding-inline-start: 20px;
+        list-style-type: none;
+        gap: 20px;
+        li{
+
+            
+            user-select: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            background-color: rgb(67, 67, 80);
+
+            &:hover{
+                background-color:rgb(49, 49, 58); 
+            }
+        }
+    }
+}

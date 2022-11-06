@@ -1,0 +1,30 @@
+
+
+body{
+    margin: 0;
+    font-family: Madefor;
+    background-color:#434350; ;
+    overflow: hidden;
+ 
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #323334;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(186, 176, 176);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

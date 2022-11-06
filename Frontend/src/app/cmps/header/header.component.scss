@@ -1,0 +1,114 @@
+.header{
+
+    .black-screen{
+        background-color: black;
+        position: fixed;
+        width: 100vw;
+        height: 10000000px;
+        z-index: 100000;
+        opacity: 0.4;
+        cursor: pointer;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #26262a;
+    border-bottom: rgba(88, 85, 85, 0.322) solid 1px;
+    .left-header{
+        width: fit-content;
+        cursor: pointer;
+        user-select: none;
+        color: whitesmoke;
+        gap: 13px;
+        padding-inline-start: 20px;
+        font-size: 1.3rem;
+        img{
+            width: 50px;
+        }
+
+    }
+
+    .right-header{
+
+        .user-info{
+            display: flex;
+            align-items: center;
+            color: whitesmoke;
+            gap: 10px;
+            font-size: .8rem;
+            img{
+            filter: contrast(0%);
+
+                width: 30px;
+                height: 30px;
+            }
+        }
+        padding-inline-end: 20px;
+        button{
+            border: none;
+            background-color: #6f6f76;
+            padding: 10px;
+            border-radius: 10px;
+            color: whitesmoke;
+            font-family: Madefor;
+            cursor: pointer;
+            user-select: none;
+
+            &:hover{
+                background-color:#484854 ;
+            }
+        }
+    }
+
+    .login-modal{
+        background-color: #26262a;
+        padding: 100px;
+        border-radius: 20px;
+        z-index: 10000000000000000000000;
+        position: fixed;
+        top: 50%;
+        
+        left: 50%;
+        transform: translate(-50%,-50%);
+
+        form{
+
+        align-items: center;
+
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+
+            input{
+        font-family: Madefor;
+
+                width: 100%;
+                padding: 15px;
+                border: none;
+                border-radius: 20px;
+                &:focus{
+                    outline: none;
+                }
+            }
+
+            button{
+        font-family: Madefor;
+
+                background-color: #484854;
+                color: whitesmoke;
+                border: none;
+                border-radius: 20px;
+                padding: 15px;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: #6f6f76;
+                }
+
+            }
+        }
+
+        
+    }
+}
