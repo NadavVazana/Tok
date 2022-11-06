@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { MessageService } from './../../services/message.service';
 import { SocketService } from './../../services/socket.service';
 import { ServerService } from './../../services/server.service';
@@ -14,7 +15,8 @@ export class ChatComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private serverService: ServerService,
     private socketService: SocketService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private userService:UserService) { }
 
    @ViewChild('scroll') scroll!:ElementRef
   server!: any
@@ -47,8 +49,8 @@ export class ChatComponent implements OnInit {
       if ( message.server._id === this.server._id) {
         let msg = ''
         msg += message.msg
-
-        this.messages.push({ msg, sentAt: message.sentAt })
+        
+        this.messages.push({ msg, sentAt: message.sentAt,user:message.user })
       }})
 
 
@@ -56,6 +58,11 @@ export class ChatComponent implements OnInit {
     this.messageService.query().subscribe((msgs: any) => {
       this.messages = msgs
 })}
+
+getLoggedInUser(){
+  return this.userService.getLoggedInUser().username
+  
+}
 
 
 
@@ -67,7 +74,7 @@ export class ChatComponent implements OnInit {
     const date = new Date()
     const mins = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
     const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()
-    var msgToSend = { msg: this.message, server: this.server, sentAt: `${hours}:${mins}` }
+    var msgToSend = { msg: this.message, server: this.server, sentAt: `${hours}:${mins}` ,user:this.userService.getLoggedInUser()}
     this.socketService.emit('send-message', msgToSend)
     this.messageService.setMsgs(msgToSend).subscribe(msg => {
     })

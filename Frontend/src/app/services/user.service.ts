@@ -9,6 +9,10 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
+  getLoggedInUser(){
+    return JSON.parse(localStorage.getItem('loggedInUser') || '')
+  }
+
   login(user:User){
     console.log(user);
     

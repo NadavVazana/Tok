@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
   onSignOut(){
     this.userService.logout().subscribe(msg=>{
         this.loggedInUser = null
+        localStorage.clear()
       
     })
   }
