@@ -17,9 +17,13 @@
         <form>
             <input [(ngModel)]="user.username" name="username" type="text" placeholder="username">
             <input name="password" [(ngModel)]="user.password" type="text" placeholder="password">
+            <div class="actions">
             <button (click)="onLogin()" type="button" >Login</button>
 
             <button (click)="onSignup()" type="button">Signup</button>
+            
+        </div>
+        <p class="error-msg" *ngIf="isError">Invalid login details 😢</p>
         </form>
     </div>
 

@@ -33,7 +33,6 @@ async function signup(req, res) {
 }
 
 async function logout(req, res) {
-    console.log('login out');
     try {
         res.clearCookie('loginToken')
         res.send({ msg: 'Logged out successfully' })

@@ -26,18 +26,9 @@ export class ChatComponent implements OnInit {
   isTyping = {username:'',isTyping:false}
   user!:User
 
-  ngAfterViewInit(){
-    
-
-  }
   async ngOnInit() {
     const user = this.getLoggedInUser()
-    if(user) this.user = user
-
-
-    
-    // this.scroll.nativeElement.scrollTop = 0
-    
+    if(user) this.user = user    
 
     await this.route.params.subscribe(data => {
       this.serverService.getServerById(data['id']).subscribe(data => {
@@ -50,11 +41,6 @@ export class ChatComponent implements OnInit {
         })}})})
 
 
-        
-
-
-
-
     this.socketService.listen('server-message').subscribe((message: any) => {
       if ( message.server._id === this.server._id) {
         let msg = ''
@@ -63,13 +49,14 @@ export class ChatComponent implements OnInit {
         this.messages.push({ msg, sentAt: message.sentAt,user:message.user })
       }})
 
+
       this.socketService.listen('apply-typing').subscribe((user:any)=>{
-        console.log(user);
         
           this.isTyping.isTyping = true
           this.isTyping.username = user
         
       })
+
 
       this.socketService.listen('apply-stop-typing').subscribe(()=>{
         this.isTyping.isTyping = false

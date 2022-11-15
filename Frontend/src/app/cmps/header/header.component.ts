@@ -12,11 +12,11 @@ export class HeaderComponent implements OnInit {
   constructor(private userService:UserService) { }
   user:User = {username:'',password:''} as User
   loggedInUser!:User | null
+  isError:boolean = false
   isModal:boolean = false
   ngOnInit(): void {
 
-    const user:User = JSON.parse(localStorage.getItem('loggedInUser') || '{}')    
-    console.log(user);
+    const user:User = JSON.parse(localStorage.getItem('loggedInUser') || '')    
     if(user){
       this.loggedInUser = user
 
@@ -43,10 +43,15 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogin(){
-    this.isModal = false
+    
     this.userService.login(this.user).subscribe(user=>{
+      this.isError = false
+      this.isModal = false
+      
       localStorage.setItem('loggedInUser',JSON.stringify(user))
       this.loggedInUser = user as User
+    },
+    error =>{ this.isError = true
     })
 
   }

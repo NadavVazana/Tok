@@ -61,6 +61,15 @@
     }
 
     .login-modal{
+
+        .error-msg{
+            color: whitesmoke;
+            
+        }
+        .actions{
+            display: flex;
+            gap: 10px;
+        }
         background-color: #26262a;
         padding: 100px;
         border-radius: 20px;
